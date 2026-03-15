@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Skills — Infographic</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: #0f0f1a;
+      color: #e8e8f0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    .header-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #cc785c, #d4956a);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #cc785c 0%, #e8a87c 50%, #f0c080 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 15px;
+      color: #888;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header-date {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a40;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-2px); }
+    .stat-card .num {
+      font-size: 32px;
+      font-weight: 800;
+      color: #cc785c;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: #777;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #cc785c;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #2a2a40;
+    }
+
+    /* ── VIDEO CARDS ── */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .video-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a40;
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: #cc785c44;
+    }
+    .video-card.featured {
+      grid-column: span 2;
+      border-color: #cc785c44;
+      background: linear-gradient(135deg, #1a1a2e 0%, #1f1a2e 100%);
+    }
+    .video-rank {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #cc785c22;
+      border: 1px solid #cc785c66;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #cc785c;
+    }
+    .video-creator-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #252540;
+      border-radius: 8px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+    .creator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .video-creator-tag span {
+      font-size: 11px;
+      font-weight: 600;
+      color: #aaa;
+    }
+    .video-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e8e8f0;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .video-card .description {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+    .tag-orange { background: #cc785c22; color: #cc785c; }
+    .tag-blue { background: #5c78cc22; color: #7890dd; }
+    .tag-green { background: #5ccc8022; color: #70cc90; }
+    .tag-purple { background: #9c5ccc22; color: #b880dd; }
+
+    .video-meta {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #666;
+    }
+    .meta-icon { font-size: 12px; }
+
+    /* ── HOW SKILLS WORK ── */
+    .how-section {
+      margin-bottom: 40px;
+    }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      align-items: center;
+    }
+    .flow-step {
+      background: #1a1a2e;
+      border: 1px solid #2a2a40;
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .flow-arrow {
+      text-align: center;
+      font-size: 20px;
+      color: #cc785c44;
+    }
+    .flow-step .icon { font-size: 24px; margin-bottom: 8px; }
+    .flow-step .step-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #cc785c;
+      margin-bottom: 4px;
+    }
+    .flow-step .step-desc {
+      font-size: 11px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    /* ── TOP SKILLS ── */
+    .skills-section {
+      margin-bottom: 40px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .skill-item {
+      background: #1a1a2e;
+      border: 1px solid #2a2a40;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .skill-info h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .skill-info p { font-size: 11px; color: #777; }
+    .skill-bar-wrap {
+      margin-top: 6px;
+      background: #252540;
+      border-radius: 4px;
+      height: 4px;
+      overflow: hidden;
+    }
+    .skill-bar {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #cc785c, #e8a87c);
+    }
+    .install-count {
+      font-size: 10px;
+      color: #cc785c;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* ── ECOSYSTEM ── */
+    .ecosystem-section {
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .eco-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a40;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .eco-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #e8e8f0;
+    }
+    .learning-path-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .path-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .path-beginner { background: #5ccc8022; color: #70cc90; }
+    .path-advanced { background: #cc785c22; color: #cc785c; }
+    .path-text h5 { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+    .path-text p { font-size: 11px; color: #777; }
+
+    .platform-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #252540;
+    }
+    .platform-row:last-child { border-bottom: none; }
+    .platform-name { font-size: 12px; font-weight: 600; }
+    .platform-check { font-size: 14px; }
+
+    /* ── SKILL MD EXAMPLE ── */
+    .code-section {
+      margin-bottom: 40px;
+    }
+    .code-block {
+      background: #12121e;
+      border: 1px solid #2a2a40;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .code-header {
+      background: #1a1a2e;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #2a2a40;
+    }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-filename {
+      margin-left: 8px;
+      font-size: 12px;
+      color: #777;
+      font-weight: 600;
+    }
+    .code-body {
+      padding: 20px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .code-col h4 {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+    .line { display: block; }
+    .c-comment { color: #555; }
+    .c-key { color: #cc785c; }
+    .c-val { color: #7890dd; }
+    .c-str { color: #70cc90; }
+    .c-punct { color: #777; }
+    .c-heading { color: #e8a87c; font-weight: 700; }
+    .c-text { color: #aaa; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid #2a2a40;
+    }
+    .footer p { font-size: 11px; color: #444; margin-bottom: 8px; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .footer-link { font-size: 11px; color: #cc785c; text-decoration: none; }
+    .footer-link:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .videos-grid { grid-template-columns: 1fr; }
+      .video-card.featured { grid-column: span 1; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .ecosystem-section { grid-template-columns: 1fr; }
+      .code-body { grid-template-columns: 1fr; }
+      .header h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-badge">YouTube 影片研究 · 2026</div>
+    <h1>Claude Code Skills</h1>
+    <p>Anthropic 的代理技能（Agent Skills）系統 — 最熱門 YouTube 教學精選分析</p>
+    <div class="header-date">研究日期：2026-03-15 &nbsp;|&nbsp; 資料來源：YouTube / Anthropic Academy / 網路評測</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="num">85K+</div>
+      <div class="label">跨平台索引 Skills 數</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">418K+</div>
+      <div class="label">最熱門 Skill 安裝數</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">5</div>
+      <div class="label">跨平台支援工具</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">2025.10</div>
+      <div class="label">正式發布日期</div>
+    </div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="section-title">精選 YouTube 影片 Top 5</div>
+  <div class="videos-grid">
+
+    <div class="video-card featured">
+      <div class="video-rank">#1</div>
+      <div class="video-creator-tag">
+        <span class="creator-dot" style="background:#70cc90"></span>
+        <span>Peter Yang · @peteryangyt</span>
+      </div>
+      <h3>Claude Code Beginner's Tutorial: Build a Movie App in 15 Minutes</h3>
+      <div class="video-meta">
+        <div class="meta-item"><span class="meta-icon">⏱</span> 17 分鐘</div>
+        <div class="meta-item"><span class="meta-icon">📅</span> 2025 年 9 月</div>
+        <div class="meta-item"><span class="meta-icon">🔗</span> youtu.be/GepHGs_CZdk</div>
+      </div>
+      <div class="description">
+        最推薦的入門影片。完整示範從安裝 Claude Code → Plan Mode 規劃 → CLAUDE.md 初始化 → 一次完成 Watchlist 功能。
+        強調「先規劃、再執行」的核心工作流程。被 Class Central 收錄，跨平台廣泛傳播。
+      </div>
+      <div class="tags">
+        <span class="tag tag-green">初學者友善</span>
+        <span class="tag tag-orange">Plan Mode</span>
+        <span class="tag tag-blue">CLAUDE.md</span>
+        <span class="tag tag-purple">實戰建置</span>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-rank">#2</div>
+      <div class="video-creator-tag">
+        <span class="creator-dot" style="background:#70cc90"></span>
+        <span>Peter Yang</span>
+      </div>
+      <h3>Build a YouTube AI Research Agent using Slash Commands</h3>
+      <div class="video-meta">
+        <div class="meta-item"><span class="meta-icon">⏱</span> 15 分鐘</div>
+        <div class="meta-item"><span class="meta-icon">🔗</span> youtu.be/iW0lMW-Ff5I</div>
+      </div>
+      <div class="description">
+        直接示範建立 /youtube 斜線指令，批次分析頻道熱門影片。最清晰的 Skills + Slash Command 整合教學。
+      </div>
+      <div class="tags">
+        <span class="tag tag-orange">Slash Command</span>
+        <span class="tag tag-blue">Skills</span>
+        <span class="tag tag-green">自動化</span>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-rank">#3</div>
+      <div class="video-creator-tag">
+        <span class="creator-dot" style="background:#b880dd"></span>
+        <span>Sabrina Ramonov · Forbes 30U30</span>
+      </div>
+      <h3>CLAUDE CODE FULL COURSE!! (for beginners) — AI 社群媒體助理</h3>
+      <div class="video-meta">
+        <div class="meta-item"><span class="meta-icon">⏱</span> 75 分鐘</div>
+        <div class="meta-item"><span class="meta-icon">⭐</span> 最推薦完整課程</div>
+      </div>
+      <div class="description">
+        完整涵蓋 Skills 實戰：安裝、技能建立、品牌聲音、Quality Gates Hooks、Subagents、MCP 整合發布。
+      </div>
+      <div class="tags">
+        <span class="tag tag-purple">Skills 建立</span>
+        <span class="tag tag-orange">Hooks</span>
+        <span class="tag tag-blue">MCP</span>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-rank">#4</div>
+      <div class="video-creator-tag">
+        <span class="creator-dot" style="background:#cc785c"></span>
+        <span>Nick Saraev · 150K 訂閱</span>
+      </div>
+      <h3>Claude Code Full Course: Build & Sell — 4 小時完整大師課</h3>
+      <div class="video-meta">
+        <div class="meta-item"><span class="meta-icon">⏱</span> 4 小時</div>
+        <div class="meta-item"><span class="meta-icon">👤</span> 5,000+ 學員</div>
+      </div>
+      <div class="description">
+        最深入的進階課程：子代理、Git Worktrees 並行開發、雲端部署、上下文視窗管理策略。
+      </div>
+      <div class="tags">
+        <span class="tag tag-orange">Sub-agents</span>
+        <span class="tag tag-blue">Git Worktrees</span>
+        <span class="tag tag-green">進階</span>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-rank">#5</div>
+      <div class="video-creator-tag">
+        <span class="creator-dot" style="background:#7890dd"></span>
+        <span>Anthropic 官方 · Academy</span>
+      </div>
+      <h3>Introduction to Agent Skills — 官方 30 分鐘完整教學</h3>
+      <div class="video-meta">
+        <div class="meta-item"><span class="meta-icon">⏱</span> 6 堂 / 30 分鐘</div>
+        <div class="meta-item"><span class="meta-icon">💰</span> 完全免費</div>
+      </div>
+      <div class="description">
+        Skills 功能創造者親授。SKILL.md 格式、Progressive Disclosure、企業部署。Anthropic Academy 於 2026/03 上線。
+      </div>
+      <div class="tags">
+        <span class="tag tag-blue">官方權威</span>
+        <span class="tag tag-orange">SKILL.md</span>
+        <span class="tag tag-purple">Enterprise</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HOW SKILLS WORK -->
+  <div class="how-section">
+    <div class="section-title">Skills 運作流程</div>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="icon">📁</div>
+        <div class="step-label">建立</div>
+        <div class="step-desc">在 .claude/skills/ 建立目錄與 SKILL.md</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="icon">🔍</div>
+        <div class="step-label">掃描</div>
+        <div class="step-desc">Claude 讀取 YAML frontmatter（~100 tokens）決定相關性</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="icon">⚡</div>
+        <div class="step-label">觸發</div>
+        <div class="step-desc">自動觸發 或 /skill-name 手動調用</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="icon">🚀</div>
+        <div class="step-label">執行</div>
+        <div class="step-desc">載入完整指令（&lt;5K tokens）執行任務</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILL.md CODE EXAMPLE -->
+  <div class="code-section">
+    <div class="section-title">SKILL.md 格式範例</div>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#ff5f57"></div>
+        <div class="code-dot" style="background:#febc2e"></div>
+        <div class="code-dot" style="background:#28c840"></div>
+        <div class="code-filename">~/.claude/skills/youtube-research/SKILL.md</div>
+      </div>
+      <div class="code-body">
+        <div>
+          <h4>YAML Frontmatter（控制觸發）</h4>
+          <span class="line"><span class="c-punct">---</span></span>
+          <span class="line"><span class="c-key">name</span><span class="c-punct">: </span><span class="c-val">youtube-research</span></span>
+          <span class="line"><span class="c-key">description</span><span class="c-punct">: </span><span class="c-str">分析 YouTube 頻道熱門影片。</span></span>
+          <span class="line"><span class="c-str">  當使用者要研究 YouTube 影片時觸發。</span></span>
+          <span class="line"><span class="c-key">disable-model-invocation</span><span class="c-punct">: </span><span class="c-val">false</span></span>
+          <span class="line"><span class="c-key">allowed-tools</span><span class="c-punct">: </span><span class="c-val">Bash, Read, Write</span></span>
+          <span class="line"><span class="c-key">argument-hint</span><span class="c-punct">: </span><span class="c-str">[channel-url]</span></span>
+          <span class="line"><span class="c-punct">---</span></span>
+          <br>
+          <span class="line c-comment"># 欄位說明</span>
+          <span class="line c-comment"># name → 斜線指令名稱</span>
+          <span class="line c-comment"># description → 觸發條件（LLM 判斷）</span>
+          <span class="line c-comment"># allowed-tools → 限制工具存取</span>
+          <span class="line c-comment"># disable-model-invocation: true</span>
+          <span class="line c-comment">#   → 只能手動 /skill-name 觸發</span>
+        </div>
+        <div>
+          <h4>Markdown 內容（執行指令）</h4>
+          <span class="line c-heading"># YouTube Research Skill</span>
+          <br>
+          <span class="line c-heading">## 執行步驟</span>
+          <br>
+          <span class="line c-text">1. 取得頻道 URL：$ARGUMENTS</span>
+          <span class="line c-text">2. 搜尋最近 10 支最熱門影片</span>
+          <span class="line c-text">3. 記錄標題、觀看數、連結</span>
+          <span class="line c-text">4. 分析內容模式與成功因素</span>
+          <span class="line c-text">5. 輸出至 youtube-research.md</span>
+          <br>
+          <span class="line c-heading">## 輸出格式</span>
+          <span class="line c-text">- 影片標題 | 觀看數 | 連結</span>
+          <span class="line c-text">- 關鍵洞察：該頻道的勝出公式</span>
+          <br>
+          <span class="line c-comment"><!-- 支援 $ARGUMENTS, $0, $1 位置參數 --></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECOSYSTEM + LEARNING PATH -->
+  <div class="ecosystem-section">
+
+    <!-- TOP SKILLS -->
+    <div class="eco-card">
+      <h3>🏆 最熱門 Skills（2026 年 3 月）</h3>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#cc785c22">🔍</div>
+          <div class="skill-info">
+            <h4>find-skills</h4>
+            <p>Vercel Labs · 自動發現安裝 Skills</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:100%"></div></div>
+            <div class="install-count">418,600+ 安裝</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#5ccc8022">⚛️</div>
+          <div class="skill-info">
+            <h4>vercel-react-best-practices</h4>
+            <p>Vercel · React 最佳實踐</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:42%"></div></div>
+            <div class="install-count">176,400+ 安裝</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#7890dd22">🎨</div>
+          <div class="skill-info">
+            <h4>frontend-design</h4>
+            <p>Anthropic · 官方前端設計</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:66%"></div></div>
+            <div class="install-count">277,000+ 安裝</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#b880dd22">🎬</div>
+          <div class="skill-info">
+            <h4>remotion-best-practices</h4>
+            <p>Remotion · 影片動畫生成</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div>
+            <div class="install-count">126,000+ 安裝</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARNING PATH -->
+    <div class="eco-card">
+      <h3>📚 學習路徑建議</h3>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:11px;color:#777;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px">初學者路徑</div>
+        <div class="learning-path-step">
+          <div class="path-num path-beginner">1</div>
+          <div class="path-text">
+            <h5>Peter Yang — 15 分鐘電影 App</h5>
+            <p>建立第一個作品，理解 Plan Mode</p>
+          </div>
+        </div>
+        <div class="learning-path-step">
+          <div class="path-num path-beginner">2</div>
+          <div class="path-text">
+            <h5>Sabrina Ramonov — 75 分鐘完整課程</h5>
+            <p>實戰 Skills 建立與 Quality Gates</p>
+          </div>
+        </div>
+        <div class="learning-path-step">
+          <div class="path-num path-beginner">3</div>
+          <div class="path-text">
+            <h5>Anthropic 官方 — Introduction to Agent Skills</h5>
+            <p>官方權威，補足所有技術細節</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11px;color:#777;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px">進階開發者路徑</div>
+        <div class="learning-path-step">
+          <div class="path-num path-advanced">A</div>
+          <div class="path-text">
+            <h5>Anthropic 官方課程（架構基礎）</h5>
+            <p>深入理解 Progressive Disclosure 機制</p>
+          </div>
+        </div>
+        <div class="learning-path-step">
+          <div class="path-num path-advanced">B</div>
+          <div class="path-text">
+            <h5>Nick Saraev — 4 小時大師課</h5>
+            <p>Sub-agents、並行化、雲端部署</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #2a2a40">
+        <div style="font-size:11px;color:#777;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px">跨平台支援</div>
+        <div class="platform-row">
+          <div class="platform-name">Claude Code</div>
+          <div class="platform-check">✅ 原生支援</div>
+        </div>
+        <div class="platform-row">
+          <div class="platform-name">Cursor</div>
+          <div class="platform-check">✅ 支援</div>
+        </div>
+        <div class="platform-row">
+          <div class="platform-name">Gemini CLI</div>
+          <div class="platform-check">✅ 支援</div>
+        </div>
+        <div class="platform-row">
+          <div class="platform-name">OpenAI Codex CLI</div>
+          <div class="platform-check">✅ 支援</div>
+        </div>
+        <div class="platform-row">
+          <div class="platform-name">GitHub Copilot</div>
+          <div class="platform-check">✅ 支援</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Claude Code Skills Infographic · Demo - Claude Notebook · 2026-03-15</p>
+    <div class="footer-links">
+      <a class="footer-link" href="https://code.claude.com/docs/en/skills" target="_blank">官方文件</a>
+      <a class="footer-link" href="https://anthropic.skilljar.com" target="_blank">Anthropic Academy</a>
+      <a class="footer-link" href="https://github.com/anthropics/skills" target="_blank">GitHub Skills</a>
+      <a class="footer-link" href="https://claude.com/skills" target="_blank">Skills 市場</a>
+      <a class="footer-link" href="https://youtu.be/GepHGs_CZdk" target="_blank">Peter Yang 影片</a>
+      <a class="footer-link" href="https://youtu.be/iW0lMW-Ff5I" target="_blank">YouTube Agent 影片</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
