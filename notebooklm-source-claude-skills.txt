@@ -1,0 +1,240 @@
+CLAUDE CODE SKILLS — YouTube 影片研究與分析報告
+為 NotebookLM「Demo - Claude」筆記本準備
+研究日期：2026-03-15
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+一、什麼是 Claude Code Skills（代理技能）？
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Claude Code Skills 是 Anthropic 於 2025 年 10 月 16 日正式發布的功能，允許使用者透過一個名為 SKILL.md 的標準檔案，為 Claude AI 擴充客製化技能。
+
+每個 Skill 是一個資料夾，包含：
+- SKILL.md（必要）：以 YAML frontmatter 定義觸發條件，以 Markdown 撰寫執行指令
+- 可選支援檔案：範例、腳本、參考文件
+
+Skills 可透過兩種方式觸發：
+1. 自動觸發：Claude 根據 description 欄位判斷是否相關，自動載入
+2. 手動調用：使用者輸入 /skill-name 斜線指令
+
+Skills 採用「漸進式揭露（Progressive Disclosure）」設計：
+- 掃描階段：每個 Skill 只消耗約 100 tokens 的 description 元資料
+- 觸發後：完整 SKILL.md 載入，不超過 5,000 tokens
+- 按需載入：輔助腳本和資源只在需要時才讀取
+
+Skills 遵循 Agent Skills 開放標準（agentskills.io），與 Claude Code、Cursor、Gemini CLI、OpenAI Codex CLI、GitHub Copilot 相容，一次撰寫，跨平台通用。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+二、精選 Top 5 YouTube 影片
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【影片 #1】Claude Code Beginner's Tutorial: Build a Movie App in 15 Minutes
+創作者：Peter Yang（@peteryangyt）
+YouTube 連結：https://youtu.be/GepHGs_CZdk
+Creator Economy 文章：https://creatoreconomy.so/p/claude-code-beginners-tutorial-build-a-movie-app-in-15-minutes
+發布日期：2025 年 9 月
+影片時長：約 17 分鐘
+熱門程度：被 Class Central 收錄，多平台廣泛分享
+
+核心內容：
+- 在終端機與 Cursor IDE 中安裝 Claude Code
+- 利用 AI 解析現有程式碼庫
+- Plan Mode（規劃模式）：在寫程式碼前讓 Claude 產生詳細規格與待辦清單
+- 初始化 CLAUDE.md 作為專案的持久記憶
+- 示範一次到位建置「電影觀看清單（Watchlist）」功能
+
+影片時間戳：
+00:00 — 安裝 Claude Code（終端機 + Cursor）
+03:29 — Clone 電影 App 並讓 Claude 解析程式碼庫
+07:37 — 使用 Plan Mode 撰寫詳細規格
+10:44 — 初始化 CLAUDE.md 持久記憶
+13:43 — 一次性建置 Watchlist 功能
+
+分析：這是最適合完全初學者的入門影片。Peter 清楚示範「先規劃、再執行」的工作流程，是理解 Claude Code Skills 運作模式的最佳起點。
+
+──────────────────────────────────────────
+
+【影片 #2】Claude Code Tutorial: Build a YouTube Research Agent using Slash Commands
+創作者：Peter Yang（@peteryangyt）
+YouTube 連結：https://youtu.be/iW0lMW-Ff5I
+Creator Economy 文章：https://creatoreconomy.so/p/claude-code-tutorial-build-a-youtube-research-agent-in-15-min
+影片時長：約 15 分鐘
+熱門程度：被 Creator Economy Newsletter 大量推廣
+
+核心內容：
+- 建立 /youtube 斜線指令（Slash Command），等同建立一個 Skill
+- 實作「分析任意頻道最熱門影片」自動化功能
+- 輸出 youtube-research.md：列出標題、觀看數、YouTube 連結
+- 批次處理多個頻道的分析工作
+- 標準工作流程：Spec（規格）→ TODO（待辦）→ Code（實作）
+
+分析：這支影片直接示範了 Skills 的核心概念——將任務打包成可重複調用的斜線指令。清楚展示 Slash Command 即 Skill 的概念，以及如何從零開始設計自動化工作流程。
+
+──────────────────────────────────────────
+
+【影片 #3】CLAUDE CODE FULL COURSE!! (for beginners)
+創作者：Sabrina Ramonov（Forbes 30 Under 30，500K+ 追蹤者）
+課程連結：https://www.sabrina.dev/p/claude-code-full-course-for-beginners
+LinkedIn：https://www.linkedin.com/posts/sabrinaramonov_claude-code-full-course-for-beginners-activity-7429656757775347712-FYyk
+影片時長：約 75 分鐘
+熱門程度：被 The Neuron、多個 AI 學習平台評選為最推薦初學者完整課程
+
+課程章節：
+Chapter 1 - Setup：安裝 Claude Code、VS Code、處理權限設定
+Chapter 2 - Skills：建立客製化 Skills 撰寫社群媒體貼文
+Chapter 3 - Brand Voice：教 AI 模仿個人寫作風格（或 Alex Hormozi 風格）
+Chapter 4 - Quality Gates：使用 Hooks 自動檢查格式與品質
+Chapter 5 - Subagents：建立自主代理協作系統
+Chapter 6 - MCP：連接 MCP Server 直接發布到社群媒體
+
+核心要點：
+- 強調安全模式（Safe Mode）與權限管理，防止 Claude 未授權執行危險操作
+- 實際示範「建立 Skills 撰寫貼文」，展示完整 SKILL.md 建立流程
+- Quality Gates：使用 Hooks 在提交前自動驗證輸出品質
+
+分析：最完整涵蓋 Skills 實戰應用的教學。是目前最貼近 Claude Code Skills 功能核心的實用課程。
+
+──────────────────────────────────────────
+
+【影片 #4】Claude Code Full Course: Build & Sell（4 小時完整大師課）
+創作者：Nick Saraev（Maker School 創辦人，150,000+ YouTube 訂閱）
+LinkedIn 宣布：https://www.linkedin.com/posts/nick-saraev_i-just-published-what-i-think-is-the-most-activity-7429910067052969984-iBhE
+參考社群：https://www.skool.com/ai-kanga-1414/claude-code-full-course-4-hours-build-sell-2026?p=3d846aca
+影片時長：4 小時
+熱門程度：業界最推薦的 Claude Code 進階完整課程
+
+核心內容：
+- 子代理（Sub-agents）的正確使用方式與編排
+- Git Worktrees 並行開發：多個任務同時進行互不干擾
+- 雲端部署端到端流程
+- IDE 比較：VS Code vs Antigravity（AI-native 編輯器）
+- Context Window 管理：「上下文視窗管理是區分初級與高級使用者的關鍵技能」
+- Hooks 與斜線指令進階應用
+- 自動化業務建置完整流程
+
+Nick 的核心教學原則：
+1. 「不需要描述每個像素」——給 Claude 清晰願景，讓它建構初稿，再迭代
+2. 「信任但驗證」——AI 速度快但可能自信地出錯，務必驗證輸出
+3. 「具體指定檔案」——減少 Claude 需要保持的上下文量
+
+分析：最深入、最全面的技術課程。對已有基礎的開發者，這是必看的進階教材。
+
+──────────────────────────────────────────
+
+【影片 #5】Introduction to Agent Skills（官方課程）
+創作者：Anthropic 官方
+課程平台：Anthropic Academy（Skilljar）
+課程連結：https://anthropic.skilljar.com/introduction-to-agent-skills
+Anthropic 部落格：https://claude.com/blog/skills
+工程深探文章：https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+發布日期：2026 年 3 月 2 日
+影片時長：6 堂課，共約 30 分鐘
+費用：完全免費（需 Skilljar 帳號）
+
+課程涵蓋：
+- Agent Skills 的設計理念與技術架構
+- SKILL.md 格式詳解（YAML frontmatter + Markdown 指令兩部分）
+- Progressive Disclosure（漸進式揭露）機制說明
+- 建立、測試、發布 Skills 的完整流程
+- 組織層級管理（Enterprise Managed Skills）
+- 最佳實踐與常見錯誤
+
+分析：由 Skills 功能的發明者親自授課，是最權威的技術資源。提供其他影片所沒有的架構深度與官方最佳實踐。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+三、SKILL.md 格式技術說明
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+每個 SKILL.md 檔案由兩部分組成：
+
+第一部分：YAML frontmatter（控制觸發邏輯）
+---
+name: skill-name              # 斜線指令名稱（/skill-name）
+description: 描述何時使用     # Claude 用來判斷是否載入（關鍵欄位）
+disable-model-invocation: false  # true = 只能手動觸發，防止自動調用
+user-invocable: true          # false = 隱藏於選單，只有 Claude 可觸發
+allowed-tools: Read, Write    # 限制此 Skill 可使用的工具
+context: fork                 # 在隔離子代理中執行
+---
+
+第二部分：Markdown 內容（執行指令）
+提供給 Claude 的詳細步驟說明、模板、範例和參考資料。
+
+支援動態變數替換：
+- $ARGUMENTS    — 斜線指令後的所有參數
+- $ARGUMENTS[0] 或 $0 — 第一個參數（位置索引）
+- ${CLAUDE_SESSION_ID} — 目前 session ID
+- ${CLAUDE_SKILL_DIR}  — Skill 所在目錄路徑
+
+執行方式：
+- !`bash command` 語法可在 Skill 內容送給 Claude 前執行 Shell 指令
+- 輸出結果直接注入 Skill 內容（預處理，非 Claude 執行）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+四、Skills 生態系現況（2026 年 3 月）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+生態系規模：
+- 總索引 Skills 數：85,000+（跨平台）
+- 官方發布日期：2025 年 10 月 16 日
+- 開放標準宣布：2025 年 12 月 18 日
+
+最熱門 Skills（依安裝數排行）：
+1. find-skills（Vercel Labs）— 418,600+ 安裝
+   功能：元技能，自動發現並安裝其他 Skills
+2. frontend-design（Anthropic 官方）— 277,000+ 安裝
+   功能：大膽設計系統、鮮明排版、有目的的動畫
+3. vercel-react-best-practices（Vercel）— 176,400+ 安裝
+4. web-design-guidelines — 137,000+ 安裝
+5. remotion-best-practices（Remotion 團隊）— 126,000+ 安裝
+   功能：影片動畫生成，修正 Claude 在插值、音訊、構圖的常見錯誤
+
+跨平台支援（相同 SKILL.md 格式）：
+- Claude Code（原生支援）
+- Cursor
+- Gemini CLI
+- OpenAI Codex CLI
+- GitHub Copilot
+
+Bundled Skills（Claude Code 內建）：
+- /batch — 大規模程式碼變更，並行執行
+- /claude-api — 載入 Claude API 參考文件
+- /debug — 排查 Claude Code session 問題
+- /loop — 定時重複執行任務
+- /simplify — 程式碼品質審查與優化
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+五、學習路徑建議
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+初學者路徑：
+步驟 1 → Peter Yang 15 分鐘電影 App（建立第一個作品）
+步驟 2 → Sabrina Ramonov 75 分鐘完整課程（Skills 實戰）
+步驟 3 → Anthropic 官方 Introduction to Agent Skills（技術深度）
+
+進階開發者路徑：
+步驟 A → Anthropic 官方課程（架構理解）
+步驟 B → Nick Saraev 4 小時大師課（Sub-agents、並行化、雲端部署）
+步驟 C → 自建 Skills，上傳至 GitHub 分享
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+六、資源清單
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+官方資源：
+- Claude Code Skills 官方文件：https://code.claude.com/docs/en/skills
+- Agent Skills 開放標準：https://agentskills.io
+- Anthropic Skills GitHub：https://github.com/anthropics/skills
+- Anthropic Academy：https://anthropic.skilljar.com
+- Claude Skills 市場：https://claude.com/skills
+- 完整 Skills 建置指南 PDF：https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf
+
+社群資源：
+- Awesome Claude Skills：https://github.com/travisvn/awesome-claude-skills
+- Awesome Claude Code：https://github.com/hesreallyhim/awesome-claude-code
+- Awesome Claude Code Plugins：https://github.com/ccplugins/awesome-claude-code-plugins
+- Skills 市場（第三方）：https://awesome-skills.com
+
+創作者資源：
+- Peter Yang 系列教學：https://creatoreconomy.so
+- Sabrina Ramonov 課程：https://www.sabrina.dev
+- Best Claude Code YouTube Videos Ranking：https://medium.com/@rentierdigital/i-watched-25-claude-code-youtube-videos-so-you-dont-have-to-the-definitive-ranking-550aa6863840
