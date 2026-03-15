@@ -1,0 +1,14 @@
+{
+  "name": "claude-notebooklm",
+  "version": "1.0.0",
+  "description": "List and manage NotebookLM notebooks via the NotebookLM Enterprise API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "list": "node index.js list",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "google-auth-library": "^9.0.0"
+  }
+}
